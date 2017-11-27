@@ -1,16 +1,13 @@
-  <section class="MessagesArea">
+<section class="MessagesArea">
     <ul id="messages" class="List">
-      <li *ngFor="let message of messages; trackBy: trackBy" class="List__Item">
-        <img *ngIf="isImageMessage(message); else imageTitle"
-          [src]="message.url"
-          [alt]="message.text"
-          [title]="message.text">
-        <ng-template #imageTitle>
-          <div class="List__Item__Text">{{message.text}}</div>
-        </ng-template>
-        <div class="List__Item__Created">
-          {{message.created | distanceToNow : true }}
-        </div>
-      </li>
+        <li *ngFor="let message of messages; let i = index; trackBy: trackBy" class="List__Item" [routerLink]="['/edit', i]">
+            <img *ngIf="isImageMessage(message); else imageTitle" [src]="message.url" [alt]="message.text" [title]="message.text">
+            <ng-template #imageTitle>
+                <div class="List__Item__Text">{{message.text}}</div>
+            </ng-template>
+            <div class="List__Item__Created">
+                {{message.created | distanceToNow : true }}
+            </div>
+        </li>
     </ul>
-  </section>
+</section>
